@@ -1,18 +1,18 @@
 import React from 'react';
-import cheese from '../res/cheese.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
+
 import './IngredientCard';
+import './Ingredients.css';
 
 
-class IngredientCard extends React.Component {
-	render() {
-		return (
-			<div class="ui card">
-				<a class="image" href="#">
-					<img src={cheese} alt="Cheese" />
-				</a>
-			</div>
-		);
-	}
-}
+
+const IngredientCard = (props) => {
+	return (
+		<Card className="styling">
+			<Card.Img variant="top" src={props.ingredient} />
+		</Card>
+	);
+};
 
 export default IngredientCard;
