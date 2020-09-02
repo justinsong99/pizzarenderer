@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 
 import './IngredientCard';
-import './Ingredients.css';
+import './css/Ingredients.css';
 
 
 
