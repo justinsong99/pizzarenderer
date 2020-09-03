@@ -9,15 +9,19 @@ import tomato from '../res/tomato.png';
 
 class IngredientList extends React.Component {
 	render() {
+		const arrayOfIngredients = [{"name":cheese}, {"name":pineapple}, {"name":tomato}];
 		return (
 			<div className="container2">
+				<form className="ui form">
+					<input type="text" />
+				</form>	
 				<div className="list-styling">
-					<IngredientCard ingredient={cheese} />
-					<IngredientCard ingredient={pineapple}/>
-					<IngredientCard ingredient={tomato} />
-					<IngredientCard ingredient={cheese} />
-					<IngredientCard ingredient={pineapple}/>
-					<IngredientCard ingredient={tomato} />
+					{arrayOfIngredients.map((d, idx) =>
+						<IngredientCard
+							ingredient={d.name}
+							key={idx}
+						/>
+					)}
 				</div>
 			</div>	
 		);
