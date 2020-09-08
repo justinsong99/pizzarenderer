@@ -10,7 +10,7 @@ const IngredientCard = (props) => {
 	return (
 
 		<Card className="styling">
-			<Card.Img variant="top" src={props.ingredient} />
+			<img className='img-styling' src={props.ingredient} alt="icon"/>
 		</Card>
 	);
 };

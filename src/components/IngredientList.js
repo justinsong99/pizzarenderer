@@ -1,42 +1,51 @@
 import React from 'react';
 import IngredientCard from './IngredientCard';
 import IngredientSearchBar from './IngredientSearchBar';
+import imageLoader from './images';
 
 import './css/IngredientList.css';
 
-import cheese from '../res/cheese.png';
-import pineapple from '../res/pineapple.png';
-import tomato from '../res/tomato.png';
-
 class IngredientList extends React.Component {
-	constructor(props) {
-		super(props);
+	state = { ingredients: [], searchTerm: '' };
 
-		this.state = { ingredients: [{"name":cheese}, {"name":pineapple}, {"name":tomato}] }	
+	componentDidMount() {
+		const ingredients = imageLoader;
+		this.setState({ ingredients });
 	}
 
 	onSearchSubmit = async (term) => {
-		if (term === "cheese") {
-			term = cheese;
-		} else if (term === "tomato") {
-			term = tomato;
-		} else if (term === "pineapple") {
-			term = pineapple;
-		}
+		var ingredients = imageLoader;
+		const findIngredient = (element) => {
+			return ingredients.filter(item => {
+				return item.text === element
+			})
+		};
+
+		ingredients = findIngredient(term);
+		if (ingredients && ingredients.length > 0) {
+			this.setState({ ingredients });
+		} 
 		
-		//Empty string so empty field when onSubmit was triggered
-		if(term === "") {
-			//We set state to the default list of ingredients
-			this.setState({ ingredients: [{"name":cheese}, {"name":pineapple}, {"name":tomato}] });
+	}
+
+	handleChange = async (term) => {
+		var ingredients = imageLoader;
+		const findIngredient = (element) => {
+			return ingredients.filter(item => item.text.toLowerCase().includes(element.toLowerCase()))
+		};
+		if(term.length===1) {
+			const ingredients = imageLoader;
+			this.setState({ ingredients });
 		} else {
-			this.setState({ ingredients: [{"name": term}] });
+			ingredients = findIngredient(term);
+			this.setState({ingredients});
 		}
 	}
 
 	render() {
 		return (
 			<div className="container2">
-				<IngredientSearchBar onSubmit={this.onSearchSubmit}/>
+				<IngredientSearchBar onSubmit={this.onSearchSubmit} onChange={this.handleChange}/>
 				<div className="list-styling">
 					{this.state.ingredients.map((d, idx) =>
 						<IngredientCard

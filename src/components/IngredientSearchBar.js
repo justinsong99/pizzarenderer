@@ -9,7 +9,13 @@ class IngredientSearchBar extends React.Component {
 		this.props.onSubmit(this.state.term);
 	}
 
+	handleChange=(event) => {
+		this.props.onChange(this.state.term);
+		this.setState({term: event.target.value});
+	}
+
 	render() {
+
 		return (
 			<div className="ui segment">
 				<form onSubmit={this.onFormSubmit} className="ui form">
@@ -17,8 +23,8 @@ class IngredientSearchBar extends React.Component {
 						<label>Ingredient Search</label>
 						<input
 							type="text"
-							value={this.state.term}
-							onChange={(e) => this.setState({ term: e.target.value })}
+							value={this.state.term} 
+							onChange={this.handleChange}
 						/>
 					</div>
 				</form>	
